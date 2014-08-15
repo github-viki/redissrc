@@ -445,3 +445,23 @@ void listRotate(list *list) {
     tail->next = list->head;
     list->head = tail;
 }
+
+/*
+ *反转整个list
+ *T = O(1)
+ */
+void listReverse(list *list){
+	listNode *node = list->tail;
+	listNode *p = list->tail;
+	//列表只有一个元素，返回
+	if(listLength(list) <= 1) return;
+	while(node != list->head)
+	{
+		p = node->prev;
+		node->prev = node->next;
+		node->next = p;
+		//已经转换为next;
+		node = node->next;
+	}
+	node->next = NULL;
+}
